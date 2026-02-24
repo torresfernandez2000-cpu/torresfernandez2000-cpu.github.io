@@ -12,10 +12,9 @@
 html{scroll-behavior:smooth;}
 body{background:var(--negro);color:var(--texto);font-family:'Montserrat',sans-serif;font-weight:300;overflow-x:hidden;}
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-@keyframes scrollPulse{0%,100%{opacity:.3;}50%{opacity:1;}}
-@keyframes slideIn{from{opacity:0;transform:translateY(32px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pulse{0%,100%{opacity:.3;}50%{opacity:1;}}
 
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 52px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,rgba(8,8,8,.96),transparent);}
 .nav-logo{font-family:'Cormorant Garamond',serif;font-size:22px;letter-spacing:4px;color:var(--crema);text-decoration:none;}
@@ -24,7 +23,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 52px;display:fl
 .nav-links a:hover{color:var(--oro);}
 
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 32px 80px;position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 60%,rgba(201,168,76,.07) 0%,transparent 70%),radial-gradient(ellipse 40% 35% at 15% 85%,rgba(201,168,76,.04) 0%,transparent 60%);pointer-events:none;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 60%,rgba(201,168,76,.07) 0%,transparent 70%);pointer-events:none;}
 .hero-tag{font-size:9px;letter-spacing:6px;text-transform:uppercase;color:var(--oro);margin-bottom:28px;animation:fadeUp .9s ease .2s both;}
 .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(58px,11vw,118px);font-weight:300;line-height:.92;color:var(--crema);letter-spacing:-1px;animation:fadeUp .9s ease .4s both;}
 .hero h1 em{font-style:italic;color:var(--oro-claro);}
@@ -36,18 +35,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 52px;display:fl
 .hero-cta:hover::before{transform:translateX(0);}
 .hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:fadeIn 1s ease 1.4s both;}
 .hero-scroll span{font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--suave);}
-.scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,var(--oro),transparent);animation:scrollPulse 2s ease infinite;}
+.scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,var(--oro),transparent);animation:pulse 2s ease infinite;}
 
 .sep{display:flex;align-items:center;gap:16px;max-width:160px;margin:0 auto;padding:48px 0;}
 .sep-line{flex:1;height:1px;background:var(--oro);opacity:.3;}
 .sep-dot{width:5px;height:5px;background:var(--oro);transform:rotate(45deg);opacity:.6;}
 
 section{max-width:1100px;margin:0 auto;padding:72px 32px;}
-
-.anim{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease;}
-.anim.visible{opacity:1;transform:translateY(0);}
-.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}.d5{transition-delay:.5s;}
-
 .sec-tag{font-size:9px;letter-spacing:6px;text-transform:uppercase;color:var(--oro);margin-bottom:12px;display:block;}
 .sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,5vw,54px);font-weight:300;color:var(--crema);line-height:1.1;margin-bottom:20px;}
 .sec-title em{font-style:italic;color:var(--oro-claro);}
@@ -84,11 +78,11 @@ section{max-width:1100px;margin:0 auto;padding:72px 32px;}
 .fg{display:flex;flex-direction:column;gap:7px;margin-bottom:20px;}
 .fg.full{grid-column:1/-1;}
 .fg label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--suave);}
-.fg input,.fg select,.fg textarea{background:transparent;border:none;border-bottom:1px solid rgba(201,168,76,.2);padding:11px 0;color:var(--crema);font-family:'Montserrat',sans-serif;font-size:14px;font-weight:300;outline:none;transition:border-color .3s;width:100%;-webkit-appearance:none;}
+.fg input,.fg select,.fg textarea{background:transparent;border:none;border-bottom:1px solid rgba(201,168,76,.2);padding:11px 0;color:var(--crema);font-family:'Montserrat',sans-serif;font-size:14px;font-weight:300;outline:none;transition:border-color .3s;width:100%;-webkit-appearance:none;border-radius:0;}
 .fg select option{background:var(--oscuro);}
 .fg input:focus,.fg select:focus,.fg textarea:focus{border-bottom-color:var(--oro);}
 .fg textarea{resize:none;height:90px;}
-.btn-send{display:block;width:100%;margin-top:28px;padding:16px;background:var(--oro);color:var(--negro);border:none;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:500;letter-spacing:4px;text-transform:uppercase;cursor:pointer;transition:background .3s;}
+.btn-send{display:block;width:100%;margin-top:28px;padding:16px;background:var(--oro);color:var(--negro);border:none;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:500;letter-spacing:4px;text-transform:uppercase;cursor:pointer;transition:background .3s;border-radius:0;}
 .btn-send:hover{background:var(--oro-claro);}
 .form-ok{display:none;text-align:center;padding:20px;color:var(--oro);font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;}
 
@@ -127,14 +121,12 @@ footer a:hover{color:var(--oro);}
 </div>
 
 <section id="servicios">
-  <div class="anim d1">
-    <span class="sec-tag">Lo que ofrezco</span>
-    <h2 class="sec-title">Servicios <em>a medida</em></h2>
-  </div>
+  <span class="sec-tag">Lo que ofrezco</span>
+  <h2 class="sec-title">Servicios <em>a medida</em></h2>
   <div class="servicios-grid">
-    <div class="card anim d2">
+    <div class="card">
       <div class="card-num">01</div>
-      <span class="card-icon">🍽️</span>
+      <span class="card-icon">&#127869;&#65039;</span>
       <h3 class="card-title">Asesoría Gastronómica</h3>
       <p class="card-desc">Transformo restaurantes, marcas y proyectos de hostelería en experiencias únicas. Desde la carta hasta la experiencia del comensal.</p>
       <ul class="card-list">
@@ -144,9 +136,9 @@ footer a:hover{color:var(--oro);}
         <li>Concepto y apertura de locales</li>
       </ul>
     </div>
-    <div class="card anim d3">
+    <div class="card">
       <div class="card-num">02</div>
-      <span class="card-icon">📊</span>
+      <span class="card-icon">&#128202;</span>
       <h3 class="card-title">Marketing Gastronómico</h3>
       <p class="card-desc">Estrategia digital pensada para el sector food. Posicionamiento, contenido y comunidad para marcas que quieren destacar.</p>
       <ul class="card-list">
@@ -156,9 +148,9 @@ footer a:hover{color:var(--oro);}
         <li>Campañas y lanzamientos</li>
       </ul>
     </div>
-    <div class="card anim d4">
+    <div class="card">
       <div class="card-num">03</div>
-      <span class="card-icon">👨‍🍳</span>
+      <span class="card-icon">&#128104;&#8205;&#127859;</span>
       <h3 class="card-title">Chef Privado</h3>
       <p class="card-desc">Llevo la alta cocina a tu espacio. Cenas privadas, eventos exclusivos y experiencias gastronómicas personalizadas al más alto nivel.</p>
       <ul class="card-list">
@@ -174,21 +166,19 @@ footer a:hover{color:var(--oro);}
 <div class="sep"><div class="sep-line"></div><div class="sep-dot"></div><div class="sep-line"></div></div>
 
 <section id="sobre">
-  <div class="anim d1">
-    <span class="sec-tag">Quién soy</span>
-    <h2 class="sec-title">La cocina como<br><em>lenguaje universal</em></h2>
-  </div>
+  <span class="sec-tag">Quién soy</span>
+  <h2 class="sec-title">La cocina como<br><em>lenguaje universal</em></h2>
   <div class="sobre-grid">
-    <div class="sobre-texto anim d2">
+    <div class="sobre-texto">
       <p>Soy Jorge Torres, chef y consultor gastronómico con una visión que va más allá de los fogones. <strong>Creo que la gastronomía es la herramienta más poderosa para crear experiencias y conectar personas.</strong></p>
       <p>Mi trabajo combina técnica culinaria, estrategia de marca y conocimiento del sector para ayudar a restaurantes, empresas y particulares a llevar sus proyectos al siguiente nivel.</p>
       <p>Tanto si buscas <strong>transformar tu negocio hostelero</strong>, dar visibilidad a tu marca gastronómica o simplemente vivir una experiencia culinaria única en casa, estoy aquí para hacerlo posible.</p>
     </div>
-    <div class="stats-grid anim d3">
+    <div class="stats-grid">
       <div class="stat"><span class="stat-num">10+</span><span class="stat-lbl">Años de experiencia</span></div>
       <div class="stat"><span class="stat-num">50+</span><span class="stat-lbl">Proyectos completados</span></div>
       <div class="stat"><span class="stat-num">3</span><span class="stat-lbl">Áreas de especialización</span></div>
-      <div class="stat"><span class="stat-num">∞</span><span class="stat-lbl">Pasión por la cocina</span></div>
+      <div class="stat"><span class="stat-num">&#8734;</span><span class="stat-lbl">Pasión por la cocina</span></div>
     </div>
   </div>
 </section>
@@ -196,17 +186,13 @@ footer a:hover{color:var(--oro);}
 <div class="sep"><div class="sep-line"></div><div class="sep-dot"></div><div class="sep-line"></div></div>
 
 <section id="contacto">
-  <div class="anim d1">
-    <span class="sec-tag">Trabajemos juntos</span>
-    <h2 class="sec-title">¿Tienes un <em>proyecto</em><br>en mente?</h2>
-    <p class="contact-desc">Cuéntame qué necesitas y te respondo en menos de 24h.</p>
-  </div>
-  <div class="anim d2">
-    <a href="https://wa.me/34670260160" class="wa-btn" target="_blank">
-      <span>💬</span> Escríbeme por WhatsApp
-    </a>
-  </div>
-  <div class="form-box anim d3">
+  <span class="sec-tag">Trabajemos juntos</span>
+  <h2 class="sec-title">¿Tienes un <em>proyecto</em><br>en mente?</h2>
+  <p class="contact-desc">Cuéntame qué necesitas y te respondo en menos de 24h.</p>
+  <a href="https://wa.me/34670260160" class="wa-btn" target="_blank">
+    <span>&#128172;</span> Escríbeme por WhatsApp
+  </a>
+  <div class="form-box">
     <p class="form-box-title">O envíame un mensaje</p>
     <form id="contactForm">
       <div class="form-row">
@@ -227,35 +213,16 @@ footer a:hover{color:var(--oro);}
       </div>
       <button type="submit" class="btn-send">Enviar mensaje</button>
     </form>
-    <div class="form-ok" id="formOk">Gracias. Te escribo en menos de 24h. 🙏</div>
+    <div class="form-ok" id="formOk">Gracias. Te escribo en menos de 24h. &#128591;</div>
   </div>
 </section>
 
 <footer>
-  <p>© 2025 Jorge Torres. Todos los derechos reservados.</p>
+  <p>&#169; 2025 Jorge Torres. Todos los derechos reservados.</p>
   <a href="https://wa.me/34670260160" target="_blank">WhatsApp</a>
 </footer>
 
 <script>
-var els = document.querySelectorAll('.anim');
-
-function check() {
-  var wh = window.innerHeight || document.documentElement.clientHeight;
-  for (var i = 0; i < els.length; i++) {
-    var r = els[i].getBoundingClientRect();
-    if (r.top < wh - 40) {
-      els[i].classList.add('visible');
-    }
-  }
-}
-
-window.addEventListener('scroll', check, {passive: true});
-window.addEventListener('resize', check, {passive: true});
-check();
-setTimeout(check, 200);
-setTimeout(check, 600);
-setTimeout(check, 1200);
-
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
   var d = new FormData(this);
