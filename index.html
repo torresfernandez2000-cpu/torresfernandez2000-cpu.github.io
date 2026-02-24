@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jorge Torres — Chef · Consultor · Estratega gastronómico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --negro: #080808;
+    --oscuro: #111111;
+    --oro: #C9A84C;
+    --oro-claro: #e8c97a;
+    --crema: #F5EDD6;
+    --texto: #d4c9b0;
+    --texto-suave: #7a7060;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--negro); color: var(--texto); font-family: 'Montserrat', sans-serif; font-weight: 300; overflow-x: hidden; cursor: none; }
+  .cursor { position: fixed; width: 8px; height: 8px; background: var(--oro); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); }
+  .cursor-ring { position: fixed; width: 32px; height: 32px; border: 1px solid var(--oro); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); opacity: 0.5; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 28px 60px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, rgba(8,8,8,0.95), transparent); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; letter-spacing: 3px; color: var(--crema); text-decoration: none; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links a { color: var(--texto-suave); text-decoration: none; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--oro); }
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; padding: 120px 40px 80px; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 60%, rgba(201,168,76,0.06) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.04) 0%, transparent 60%); }
+  .hero-tag { font-size: 9px; letter-spacing: 6px; text-transform: uppercase; color: var(--oro); margin-bottom: 32px; opacity: 0; animation: fadeUp 1s ease 0.3s forwards; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(64px, 10vw, 120px); font-weight: 300; line-height: 0.95; color: var(--crema); letter-spacing: -1px; margin-bottom: 8px; opacity: 0; animation: fadeUp 1s ease 0.5s forwards; }
+  .hero h1 em { font-style: italic; color: var(--oro-claro); }
+  .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(16px, 2.5vw, 22px); font-weight: 300; font-style: italic; color: var(--texto-suave); margin-top: 24px; margin-bottom: 60px; max-width: 600px; line-height: 1.6; opacity: 0; animation: fadeUp 1s ease 0.7s forwards; }
+  .hero-sub span { color: var(--oro); font-style: normal; font-weight: 400; }
+  .hero-cta { display: inline-block; padding: 16px 48px; border: 1px solid var(--oro); color: var(--oro); text-decoration: none; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; transition: all 0.4s; position: relative; overflow: hidden; opacity: 0; animation: fadeUp 1s ease 0.9s forwards; }
+  .hero-cta::before { content: ''; position: absolute; inset: 0; background: var(--oro); transform: translateX(-100%); transition: transform 0.4s ease; z-index: -1; }
+  .hero-cta:hover { color: var(--negro); }
+  .hero-cta:hover::before { transform: translateX(0); }
+  .hero-scroll { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fadeIn 1s ease 1.5s forwards; }
+  .hero-scroll span { font-size: 8px; letter-spacing: 4px; text-transform: uppercase; color: var(--texto-suave); }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--oro), transparent); animation: scrollPulse 2s ease infinite; }
+  .sep { display: flex; align-items: center; gap: 20px; max-width: 200px; margin: 0 auto; padding: 60px 0; }
+  .sep-line { flex: 1; height: 1px; background: var(--oro); opacity: 0.3; }
+  .sep-diamond { width: 6px; height: 6px; background: var(--oro); transform: rotate(45deg); opacity: 0.6; }
+  section { max-width: 1100px; margin: 0 auto; padding: 80px 40px; }
+  .section-tag { font-size: 9px; letter-spacing: 6px; text-transform: uppercase; color: var(--oro); margin-bottom: 16px; display: block; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 56px); font-weight: 300; color: var(--crema); line-height: 1.1; margin-bottom: 24px; }
+  .section-title em { font-style: italic; color: var(--oro-claro); }
+  .servicios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2px; margin-top: 60px; background: rgba(201,168,76,0.1); }
+  .servicio-card { background: var(--oscuro); padding: 50px 40px; position: relative; overflow: hidden; transition: background 0.4s; }
+  .servicio-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, transparent, var(--oro), transparent); transform: scaleX(0); transition: transform 0.4s ease; }
+  .servicio-card:hover { background: #151515; }
+  .servicio-card:hover::after { transform: scaleX(1); }
+  .servicio-num { font-family: 'Cormorant Garamond', serif; font-size: 64px; font-weight: 300; color: rgba(201,168,76,0.12); line-height: 1; margin-bottom: 20px; }
+  .servicio-icon { font-size: 28px; margin-bottom: 20px; display: block; }
+  .servicio-titulo { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; color: var(--crema); margin-bottom: 16px; }
+  .servicio-desc { font-size: 13px; line-height: 1.8; color: var(--texto-suave); margin-bottom: 28px; }
+  .servicio-items { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .servicio-items li { font-size: 11px; letter-spacing: 1px; color: var(--texto-suave); padding-left: 16px; position: relative; }
+  .servicio-items li::before { content: '—'; position: absolute; left: 0; color: var(--oro); }
+  .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 60px; }
+  .sobre-texto p { font-size: 15px; line-height: 1.9; color: var(--texto-suave); margin-bottom: 20px; }
+  .sobre-texto p strong { color: var(--crema); font-weight: 400; }
+  .sobre-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(201,168,76,0.1); }
+  .stat { background: var(--oscuro); padding: 36px 30px; text-align: center; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; color: var(--oro); line-height: 1; display: block; }
+  .stat-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--texto-suave); margin-top: 8px; display: block; }
+  #contacto { max-width: 800px; text-align: center; }
+  .contact-opciones { display: flex; justify-content: center; gap: 16px; margin: 40px 0; flex-wrap: wrap; }
+  .contact-btn { display: flex; align-items: center; gap: 10px; padding: 14px 28px; border: 1px solid rgba(201,168,76,0.3); color: var(--texto); text-decoration: none; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s; }
+  .contact-btn:hover { border-color: var(--oro); color: var(--oro); background: rgba(201,168,76,0.05); }
+  .form-wrapper { background: var(--oscuro); border: 1px solid rgba(201,168,76,0.15); padding: 50px; margin-top: 50px; text-align: left; }
+  .form-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--crema); margin-bottom: 32px; text-align: center; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-group label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--texto-suave); }
+  .form-group input, .form-group select, .form-group textarea { background: transparent; border: none; border-bottom: 1px solid rgba(201,168,76,0.2); padding: 12px 0; color: var(--crema); font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 300; outline: none; transition: border-color 0.3s; }
+  .form-group select option { background: var(--oscuro); }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-bottom-color: var(--oro); }
+  .form-group textarea { resize: none; height: 100px; }
+  .form-submit { margin-top: 32px; text-align: center; }
+  .btn-submit { padding: 16px 60px; background: var(--oro); color: var(--negro); border: none; font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 4px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
+  .btn-submit:hover { background: var(--oro-claro); transform: translateY(-1px); }
+  .form-ok { display: none; text-align: center; padding: 20px; color: var(--oro); font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; }
+  footer { border-top: 1px solid rgba(201,168,76,0.1); padding: 40px 60px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  footer p { font-size: 10px; letter-spacing: 2px; color: var(--texto-suave); }
+  footer a { color: var(--texto-suave); text-decoration: none; font-size: 10px; letter-spacing: 2px; transition: color 0.3s; }
+  footer a:hover { color: var(--oro); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; } .nav-links { display: none; } section { padding: 60px 24px; }
+    .sobre-grid { grid-template-columns: 1fr; gap: 40px; } .form-grid { grid-template-columns: 1fr; }
+    .form-wrapper { padding: 30px 20px; } footer { padding: 30px 24px; flex-direction: column; text-align: center; }
+    body { cursor: auto; } .cursor, .cursor-ring { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<nav>
+  <a href="#" class="nav-logo">JT</a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#sobre">Sobre mí</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+<div class="hero">
+  <p class="hero-tag">Gastronomía · Marketing · Experiencia</p>
+  <h1>Jorge<br><em>Torres</em></h1>
+  <p class="hero-sub"><span>Chef · Consultor · Estratega gastronómico</span><br>llevando la cocina más allá del plato</p>
+  <a href="#contacto" class="hero-cta">Hablemos</a>
+  <div class="hero-scroll"><div class="scroll-line"></div><span>Scroll</span></div>
+</div>
+<section id="servicios">
+  <div class="reveal">
+    <span class="section-tag">Lo que ofrezco</span>
+    <h2 class="section-title">Servicios <em>a medida</em></h2>
+  </div>
+  <div class="servicios-grid reveal">
+    <div class="servicio-card">
+      <div class="servicio-num">01</div>
+      <span class="servicio-icon">🍽️</span>
+      <h3 class="servicio-titulo">Asesoría Gastronómica</h3>
+      <p class="servicio-desc">Transformo restaurantes, marcas y proyectos de hostelería en experiencias únicas. Desde la carta hasta la experiencia del comensal.</p>
+      <ul class="servicio-items">
+        <li>Diseño y rediseño de cartas</li>
+        <li>Optimización de costes y escandallos</li>
+        <li>Formación de equipos de cocina</li>
+        <li>Concepto y apertura de locales</li>
+      </ul>
+    </div>
+    <div class="servicio-card">
+      <div class="servicio-num">02</div>
+      <span class="servicio-icon">📊</span>
+      <h3 class="servicio-titulo">Marketing Gastronómico</h3>
+      <p class="servicio-desc">Estrategia digital pensada para el sector food. Posicionamiento, contenido y comunidad para marcas que quieren destacar.</p>
+      <ul class="servicio-items">
+        <li>Estrategia en redes sociales</li>
+        <li>Branding y posicionamiento</li>
+        <li>Contenido gastronómico de valor</li>
+        <li>Campañas y lanzamientos</li>
+      </ul>
+    </div>
+    <div class="servicio-card">
+      <div class="servicio-num">03</div>
+      <span class="servicio-icon">👨‍🍳</span>
+      <h3 class="servicio-titulo">Chef Privado</h3>
+      <p class="servicio-desc">Llevo la alta cocina a tu espacio. Cenas privadas, eventos exclusivos y experiencias gastronómicas personalizadas al más alto nivel.</p>
+      <ul class="servicio-items">
+        <li>Cenas privadas y eventos</li>
+        <li>Menús degustación personalizados</li>
+        <li>Experiencias maridaje</li>
+        <li>Celebraciones y ocasiones especiales</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<div class="sep reveal"><div class="sep-line"></div><div class="sep-diamond"></div><div class="sep-line"></div></div>
+<section id="sobre">
+  <div class="reveal">
+    <span class="section-tag">Quién soy</span>
+    <h2 class="section-title">La cocina como<br><em>lenguaje universal</em></h2>
+  </div>
+  <div class="sobre-grid">
+    <div class="sobre-texto reveal">
+      <p>Soy Jorge Torres, chef y consultor gastronómico con una visión que va más allá de los fogones. <strong>Creo que la gastronomía es la herramienta más poderosa para crear experiencias y conectar personas.</strong></p>
+      <p>Mi trabajo combina técnica culinaria, estrategia de marca y conocimiento del sector para ayudar a restaurantes, empresas y particulares a llevar sus proyectos al siguiente nivel.</p>
+      <p>Tanto si buscas <strong>transformar tu negocio hostelero</strong>, dar visibilidad a tu marca gastronómica o simplemente vivir una experiencia culinaria única en casa, estoy aquí para hacerlo posible.</p>
+    </div>
+    <div class="sobre-stats reveal">
+      <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Años de experiencia</span></div>
+      <div class="stat"><span class="stat-num">50+</span><span class="stat-label">Proyectos completados</span></div>
+      <div class="stat"><span class="stat-num">3</span><span class="stat-label">Áreas de especialización</span></div>
+      <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Pasión por la cocina</span></div>
+    </div>
+  </div>
+</section>
+<div class="sep reveal"><div class="sep-line"></div><div class="sep-diamond"></div><div class="sep-line"></div></div>
+<section id="contacto">
+  <div class="reveal">
+    <span class="section-tag">Trabajemos juntos</span>
+    <h2 class="section-title">¿Tienes un <em>proyecto</em><br>en mente?</h2>
+    <p style="font-size:14px;color:var(--texto-suave);line-height:1.8;margin-top:16px;">Cuéntame qué necesitas y te respondo en menos de 24h.</p>
+  </div>
+  <div class="contact-opciones reveal">
+    <a href="https://wa.me/34670260160" class="contact-btn" target="_blank"><span>💬</span> WhatsApp</a>
+  </div>
+  <div class="form-wrapper reveal">
+    <p class="form-title">O envíame un mensaje</p>
+    <form id="contactForm">
+      <div class="form-grid">
+        <div class="form-group"><label>Nombre</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
+        <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="tu@email.com" required></div>
+        <div class="form-group"><label>Teléfono (opcional)</label><input type="tel" name="telefono" placeholder="+34 600 000 000"></div>
+        <div class="form-group">
+          <label>Servicio de interés</label>
+          <select name="servicio">
+            <option value="">Selecciona un servicio</option>
+            <option>Asesoría Gastronómica</option>
+            <option>Marketing Gastronómico</option>
+            <option>Chef Privado</option>
+            <option>Varios / No sé todavía</option>
+          </select>
+        </div>
+        <div class="form-group full"><label>Cuéntame tu proyecto</label><textarea name="mensaje" placeholder="¿Qué tienes en mente? Cuantos más detalles mejor..." required></textarea></div>
+      </div>
+      <div class="form-submit"><button type="submit" class="btn-submit">Enviar mensaje</button></div>
+    </form>
+    <div class="form-ok" id="formOk">Gracias. Te escribo en menos de 24h. 🙏</div>
+  </div>
+</section>
+<footer>
+  <p>© 2025 Jorge Torres. Todos los derechos reservados.</p>
+  <a href="https://wa.me/34670260160" target="_blank">WhatsApp</a>
+</footer>
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cursor.style.left=mx+'px'; cursor.style.top=my+'px'; });
+  function animRing(){ rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animRing); }
+  animRing();
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const d = new FormData(this);
+    const body = encodeURIComponent('Nombre: '+d.get('nombre')+'
+Email: '+d.get('email')+'
+Telefono: '+(d.get('telefono')||'No indicado')+'
+Servicio: '+(d.get('servicio')||'No especificado')+'
+
+Mensaje:
+'+d.get('mensaje'));
+    const subject = encodeURIComponent('Solicitud de servicio - '+d.get('nombre'));
+    window.location.href = 'mailto:torresfernandez2000@gmail.com?subject='+subject+'&body='+body;
+    this.style.display='none';
+    document.getElementById('formOk').style.display='block';
+  });
+</script>
+</body>
+</html>
